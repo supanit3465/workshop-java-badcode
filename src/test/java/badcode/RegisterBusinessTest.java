@@ -83,4 +83,55 @@ class RegisterBusinessTest {
                 fail();
         }
     }
+
+    @Test
+    @DisplayName("บักทึกได้")
+    public void case6() {
+        RegisterBusiness registerBusinesses = new RegisterBusiness();
+        Speaker request = new Speaker();
+        request.setFirstName("Supanit");
+        request.setLastName("Supait");
+        request.setEmail("oilspn@gmail.com");
+        int speakerId = registerBusinesses.register(new SpeakerRepositoryMock(), request);
+        assertEquals(50,speakerId);
+    }
+
+    @Test
+    @DisplayName("Fee 500")
+    public void caseGetFee500() {
+        RegisterBusiness registerBusinesses = new RegisterBusiness();
+        int fee = registerBusinesses.getFee(1);
+        assertEquals(500,fee);
+    }
+
+    @Test
+    @DisplayName("Fee 250")
+    public void caseGetFee250() {
+        RegisterBusiness registerBusinesses = new RegisterBusiness();
+        int fee = registerBusinesses.getFee(2);
+        assertEquals(250,fee);
+    }
+
+    @Test
+    @DisplayName("Fee 100")
+    public void caseGetFee100() {
+        RegisterBusiness registerBusinesses = new RegisterBusiness();
+        int fee = registerBusinesses.getFee(5);
+        assertEquals(100,fee);
+    }
+
+    @Test
+    @DisplayName("Fee 50")
+    public void caseGetFee50() {
+        RegisterBusiness registerBusinesses = new RegisterBusiness();
+        int fee = registerBusinesses.getFee(9);
+        assertEquals(50,fee);
+    }
+}
+
+class SpeakerRepositoryMock implements SpeakerRepository {
+    @Override
+    public Integer saveSpeaker(Speaker speaker) {
+        return 50;
+    }
 }
